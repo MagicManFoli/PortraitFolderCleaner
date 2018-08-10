@@ -12,6 +12,6 @@ Usage:
 
 If no path was specified a prompt will be displayed.
 
-# Use at your own risk!
+**Use at your own risk!**
 
 This will probably only apply to owners of Google Pixel smartphones.
