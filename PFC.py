@@ -1,6 +1,7 @@
 #!python3
 
 import argparse
+import shutil  # rmtree
 from pathlib import Path
 
 
@@ -42,8 +43,8 @@ def get_folders(path):
 
 # --- main ---
 
-print("Welcome to PortraitFolderCleaner (PFC)\n\n")
-print("This is going to delete all folders in the target direction, be cautious!")
+print("Welcome to PortraitFolderCleaner (PFC)\n")
+print("This is going to delete all folders in the target direction, be cautious!\n\n")
 
 # 1. Get list of folders
 
@@ -51,9 +52,6 @@ path = setup_args()
 
 if path is None:  # no path in args
     path = input_path()
-
-# TODO remove debug
-path = Path(r"E:\TEST")
 
 print(f"Input path: {path}")
 
@@ -72,14 +70,13 @@ if confirmation != "Y":
 for folder in folders:
     for file in folder.glob("*_COVER.jpg"):
         print(f"moving {file}")
-
-        # move .parent
+        file.rename(file.parents[1] / file.name)  # move to parent directory
 
 print("\nEverything moved, deleting remaining folders\n")
 
 # Delete folders from drive
 for folder in folders:
     print(f"removing {folder}")
-    # folder.rmdir()
+    shutil.rmtree(folder, ignore_errors=True)
 
 print("\nDone.\n")
