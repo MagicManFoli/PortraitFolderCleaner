@@ -1,0 +1,6 @@
+*.spec
+
+*.idea
+Pipfile.lock
+__pycache__
+
